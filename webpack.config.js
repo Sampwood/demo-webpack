@@ -52,6 +52,23 @@ module.exports = {
         test: /\.css$/,
         use: [
           { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                mode: 'local',
+                exportGlobals: true,
+                localIdentName: '[path][name]__[local]--[hash:base64:5]'
+              }
+            }
+          }
+        ],
+        include: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
           // {
           //   loader: MiniCssExtractPlugin.loader,
           //   options: {
@@ -77,7 +94,8 @@ module.exports = {
             //   }
             // }
           }
-        ]
+        ],
+        exclude: /node_modules/
       }
     ]
   },
